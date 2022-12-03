@@ -1,10 +1,11 @@
 from rest_framework import serializers
 from .models import Cliente, Cuenta
+from django_countries.serializers import CountryFieldMixin
 
-class ClienteSerializer(serializers.ModelSerializer):
+class ClienteSerializer(CountryFieldMixin, serializers.ModelSerializer):
     class Meta:
         model = Cliente
-        fields = '__all__'
+        exclude = ['cuenta']
 
 class CuentaSerializer(serializers.ModelSerializer):
     class Meta:
